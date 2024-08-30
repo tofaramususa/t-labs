@@ -1,4 +1,7 @@
 import type { Metadata } from "next";
+import {Container} from "@/components/container"
+import {Footer} from "@/components/footer"
+import { Header } from "@/components/header"
 import { Inter } from "next/font/google";
 import "./globals.css";
 
@@ -16,7 +19,20 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+	<head>
+	<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1"></meta>
+	</head>
+      <body className={inter.className}>
+	  <div>
+		<Header>
+
+		</Header>
+			<main className="pt-navigation-height">
+				{children   }
+			</main>
+			<Footer/>
+		</div>
+		</body>
     </html>
   );
 }
