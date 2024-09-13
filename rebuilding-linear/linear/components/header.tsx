@@ -18,17 +18,18 @@ export const Header = () => {
                     <Logo className="mr-4 h-[1.8rem] w-[1.8rem]" /> Linear
                 </Link> 
                 <div className={classNames(
-                    "transition-[visibility] md:visible",
-                    hamburgerMenuIsOpen ? "visible" : "invisible delay-500"
+                    "md:block",
+                    hamburgerMenuIsOpen ? "block" : "hidden"
                 )}>
                     <nav className={classNames(
-                        "fixed md:relative md:opacity-100 md:top-0 top-navigation-height left-0 w-full bg-background overflow-auto md:block md:h-auto md:w-auto md:bg-transparent md:[&_li]:border-none transition-opacity duration-500",
+                        "fixed md:relative md:top-0 top-navigation-height left-0 w-full h-[calc(100vh-var(--navigation-height))] md:h-auto bg-background md:bg-transparent overflow-auto md:overflow-visible transition-opacity duration-300 ease-in-out",
                         hamburgerMenuIsOpen ? "opacity-100" : "opacity-0 md:opacity-100"
                     )}>
                         <ul className={classNames(
-                            "flex flex-col md:flex-row md:items-center h-full [&_li]:ml-6 [&_li]:border-b [&_li]:border-grey-dark", 
-                            "[&_a]:duration-300 [&_a]:translate-y-8 md:[&_a]:translate-y-0 [&_a]:transition-[color,transform] [&_a]:h-navigation-height [&_a]:w-full [&_a]:flex [&_a]:items-center [&_a]:text-md [&_a:hover]:text-grey md:[&_a]:text-sm",
-                            hamburgerMenuIsOpen && "[&_a]:translate-y-0"
+                            "flex flex-col md:flex-row md:items-center h-full [&_li]:ml-6 [&_li]:border-b [&_li]:border-grey-dark md:[&_li]:border-none", 
+                            "[&_a]:h-navigation-height [&_a]:w-full [&_a]:flex [&_a]:items-center [&_a]:text-md md:[&_a]:text-sm [&_a:hover]:text-grey",
+                            "transition-[transform,opacity] duration-300 ease-in-out",
+                            hamburgerMenuIsOpen ? "translate-y-0 opacity-100" : "translate-y-4 md:translate-y-0 md:opacity-100"
                         )}>
                             <li><Link href="#">Features</Link></li>
                             <li><Link href="#">Method</Link></li>
