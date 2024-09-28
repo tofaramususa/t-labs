@@ -27,7 +27,7 @@ export const Header = () => {
                     )}>
                         <ul className={classNames(
                             "flex flex-col md:flex-row md:items-center h-full [&_li]:ml-6 [&_li]:border-b [&_li]:border-grey-dark md:[&_li]:border-none", 
-                            "[&_a]:h-navigation-height [&_a]:w-full [&_a]:flex [&_a]:items-center [&_a]:text-md md:[&_a]:text-sm [&_a:hover]:text-grey",
+                            "[&_a]:h-navigation-height [&_a]:w-full [&_a]:flex [&_a]:items-center [&_a]:text-md md:[&_a]:text-sm [&_a:hover]:text  -grey",
                             "transition-[transform,opacity] duration-300 ease-in-out",
                             hamburgerMenuIsOpen ? "translate-y-0 opacity-100" : "translate-y-4 md:translate-y-0 md:opacity-100"
                         )}>

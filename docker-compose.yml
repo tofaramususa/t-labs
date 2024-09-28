@@ -2,7 +2,7 @@ services:
  frontend:
     container_name: frontend
     build: 
-      context: ./rebuilding-linear/
+      context: ./horizon/
       dockerfile: Dockerfile
     volumes:
       - frontend-vol:/app
@@ -18,7 +18,7 @@ volumes:
     driver_opts:
       o: bind
       type: 'none'
-      device: ${PWD}/rebuilding-linear
+      device: ${PWD}/horizon
 
 
 # Docker commands to use
