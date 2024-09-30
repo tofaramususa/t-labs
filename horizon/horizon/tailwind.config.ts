@@ -1,3 +1,4 @@
+import { transform } from "next/dist/build/swc";
 import type { Config } from "tailwindcss";
 
 const config: Config = {
@@ -8,7 +9,7 @@ const config: Config = {
   ],
   theme: {
 	  fontFamily: {
-		sans: "SF Pro Display, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Open Sans, Helvetica Neue, sans-serif"
+		sans: '"SF Pro Display",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen,Ubuntu, Cantarell,"Open Sans","Helvetica Neue",sans-serif',
 	  },
 	  fontSize: { 
 		xs: "1.3rem",
@@ -67,12 +68,12 @@ const config: Config = {
 	  },
 	  keyframes: {
 		"fade-in": {
-			from: { opacity: "0", y: "-10px"},
+			from: { opacity: "0", transform: "translateY(-10px)"},
 			to: { opacity: "1", y: "none"},
     	},
 	},
 	animation: {
-		"fade-in": "fade-in 1000ms 0s ease",
+		"fade-in": "fade-in 1000ms var(--animation-delay, 0) ease forwards",
 		},
 	},
   plugins: [],
