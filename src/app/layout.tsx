@@ -14,45 +14,44 @@ import { baseUrl } from "./sitemap";
 export const metadata: Metadata = {
 	metadataBase: new URL(baseUrl),
 	title: {
-		default: "Midday | Run your business smarter",
-		template: "%s | Midday",
+		default: "TLabs",
+		template: "%s | TLabs",
 	},
 	description:
-		"Midday provides you with greater insight into your business and automates the boring tasks, allowing you to focus on what you love to do instead.",
+		"A software consultancy — We build at the edge of tech (AI, modern web, infrastructure), translating emerging tools into real solutions.",
 	openGraph: {
-		title: "Midday | Run your business smarter",
+		title: "TLabs",
 		description:
-			"Midday provides you with greater insight into your business and automates the boring tasks, allowing you to focus on what you love to do instead.",
+			"A software consultancy — We build at the edge of tech (AI, modern web, infrastructure), translating emerging tools into real solutions.",
 		url: baseUrl,
-		siteName:
-			"Midday provides you with greater insight into your business and automates the boring tasks, allowing you to focus on what you love to do instead.",
+		siteName: "TLabs",
 		locale: "en_US",
 		type: "website",
 		images: [
 			{
-				url: "https://cdn.midday.ai/opengraph-image.jpg",
+				url: "/opengraph-image.jpg",
 				width: 800,
 				height: 600,
 			},
 			{
-				url: "https://cdn.midday.ai/opengraph-image.jpg",
+				url: "/opengraph-image.jpg",
 				width: 1800,
 				height: 1600,
 			},
 		],
 	},
 	twitter: {
-		title: "Midday | Run your business smarter",
+		title: "TLabs",
 		description:
-			"Midday provides you with greater insight into your business and automates the boring tasks, allowing you to focus on what you love to do instead.",
+			"A software consultancy — We build at the edge of tech (AI, modern web, infrastructure), translating emerging tools into real solutions.",
 		images: [
 			{
-				url: "https://cdn.midday.ai/opengraph-image.jpg",
+				url: "/opengraph-image.jpg",
 				width: 800,
 				height: 600,
 			},
 			{
-				url: "https://cdn.midday.ai/opengraph-image.jpg",
+				url: "/opengraph-image.jpg",
 				width: 1800,
 				height: 1600,
 			},
@@ -91,7 +90,7 @@ export default async function Layout({ children }: { children: ReactElement }) {
 			<body
 				className={cn(
 					`${GeistSans.variable} ${GeistMono.variable} ${tobiasFont.variable}`,
-					"bg-black text-white overflow-x-hidden font-sans antialiased",
+					"bg-black text-white overflow-x-hidden font-tobias antialiased",
 				)}
 			>
 				<PreferencesProvider initialPreferences={themePreferences}>
