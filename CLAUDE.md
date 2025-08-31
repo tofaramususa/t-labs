@@ -4,29 +4,25 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Structure
 
-This is a Next.js project called "linear" (despite the repo name "horizon-agency") that appears to be building a Linear-inspired interface. The main application code is located in `horizon/horizon/` directory with a nested structure:
+This is a Next.js project for TLabs (@midday/website) that follows modern web development patterns inspired by Midday's design system. The project uses a standard Next.js App Router structure:
 
-- **Main App**: `horizon/horizon/` contains the Next.js application
+- **Main App**: `src/app/` contains Next.js App Router pages and layouts
 - **Components**: Reusable UI components using CVA (Class Variance Authority) for styling
-- **Styling**: Custom Tailwind configuration with Linear-inspired design system
-- **Docker**: Containerized development environment with Docker Compose
+- **Styling**: Custom Tailwind CSS v4 configuration with modern design patterns
+- **Actions**: Server actions for form handling and API interactions
+- **Theming**: Advanced theme system with dark/light mode support
 
 ## Development Commands
 
-### Local Development (in horizon/horizon/ directory)
+### Local Development (from project root)
 ```bash
-npm run dev      # Start development server on port 3000
-npm run build    # Build production bundle
-npm run start    # Start production server
-npm run lint     # Run ESLint
-```
-
-### Docker Development (from project root)
-```bash
-make start       # Start Docker containers with docker compose up -d --build
-make clean       # Stop and remove containers
-make prune       # Clean up Docker system
-make bash CONTAINER=frontend  # Access container shell
+npm run dev        # Start development server on port 3000
+npm run build      # Build production bundle (with NODE_ENV=production)
+npm run start      # Start production server
+npm run lint       # Run Biome linter/formatter checks
+npm run format     # Format code with Biome
+npm run typecheck  # Run TypeScript type checking
+npm run clean      # Clean .next and node_modules directories
 ```
 
 ## UI/UX Design Patterns & Implementation Guide
@@ -161,9 +157,9 @@ const semanticColors = {
 
 ```typescript
 const fonts = {
-  primary: "Geist Sans", // UI text, optimal readability
-  mono: "Geist Mono",    // Code, data, numbers
-  serif: "Lora",         // Editorial content, emphasis
+  primary: "Geist Sans", // UI text, optimal readability from geist package
+  mono: "Geist Mono",    // Code, data, numbers from geist package
+  custom: "Tobias",      // Custom brand font from public/fonts/
 };
 
 const textSizes = {
@@ -468,16 +464,25 @@ export function useZodForm<T extends z.ZodType<any, any>>(
 
 #### File Organization
 ```
-horizon/horizon/
+src/
+├── app/                # Next.js App Router pages and layouts
+│   ├── about/          # About page
+│   ├── contact/        # Contact page
+│   ├── layout.tsx      # Root layout with theme provider
+│   └── page.tsx        # Home page
 ├── components/
-│   ├── ui/             # Basic UI primitives (Button, Input, etc.)
-│   ├── forms/          # Form-specific components
-│   ├── layout/         # Layout components (Header, Sidebar)
-│   └── feature/        # Feature-specific components
-├── lib/                # Utility functions (cn, validators)
-├── hooks/              # Custom React hooks
-├── types/              # TypeScript definitions
-└── app/                # Next.js app router pages
+│   ├── ui/             # Basic UI primitives (Button, etc.)
+│   ├── about/          # About page specific components
+│   ├── contact/        # Contact page specific components
+│   ├── home/           # Home page components (Hero, Sections)
+│   ├── theme/          # Theme switching components
+│   ├── header.tsx      # Main navigation header
+│   ├── footer.tsx      # Site footer
+│   └── navigation-header.tsx  # Navigation component
+├── actions/            # Server actions for forms and API calls
+├── lib/                # Utility functions and providers
+├── styles/             # Global CSS styles
+└── utils/              # Additional utility functions
 ```
 
 #### Component Export Pattern
@@ -490,8 +495,9 @@ export type { ButtonProps };
 export { Button, buttonVariants } from "./button";
 export type { ButtonProps } from "./button";
 
-// Usage - clean imports
-import { Button, Input, type ButtonProps } from "@/components/ui";
+// Usage - clean imports with @ alias pointing to src/
+import { Button, type ButtonProps } from "@/components/ui";
+import { cn } from "@/lib/utils";
 ```
 
 ## Architecture Details
@@ -504,51 +510,108 @@ import { Button, Input, type ButtonProps } from "@/components/ui";
 - Comprehensive accessibility support with ARIA patterns
 
 ### Styling System
-- **Tailwind CSS** with extensive custom configuration
+- **Tailwind CSS v4** with PostCSS integration
 - CSS custom properties for theming support
 - Semantic color system with consistent usage patterns
-- Custom spacing scale (0.4rem increments) and typography scale
+- Modern spacing and typography scales
 - Animation keyframes integrated with Tailwind
-- SF Pro Display font family with fallbacks
+- Geist font family (Sans & Mono) with custom Tobias font for branding
+
+### Theme System
+- Advanced dark/light mode support with system preference detection
+- Server-side theme handling to prevent hydration mismatches
+- Theme persistence with preferences store
+- Theme-aware component variants
+- Custom theme switching components
+
+#### Theme Architecture
+```typescript
+// Theme providers in src/lib/preferences-provider.tsx
+export function PreferencesProvider({ children }: { children: React.ReactNode }) {
+  // Handles theme state management
+  // Provides theme context to all components
+  // Manages theme persistence and system preferences
+}
+
+// Theme utilities in src/lib/theme-utils.ts and src/lib/server-theme-utils.ts
+// Server-side theme detection and handling
+```
 
 ### Form System
-- React Hook Form integration with Zod validation
-- Reusable form field components with context
-- Auto-save functionality with debouncing
+- Server Actions for form handling
+- Zod schemas for validation (see `src/actions/schema.ts`)
+- Type-safe action patterns for contact forms and subscriptions
+- Safe action wrapper with proper error handling
 - Loading states and error handling
-- Accessible form patterns
+- Accessible form patterns with proper ARIA support
+
+#### Server Action Pattern
+```typescript
+// Example from src/actions/send-support-action.ts
+import { z } from "zod";
+import { sendSupportSchema } from "./schema";
+
+export async function sendSupportAction(input: z.infer<typeof sendSupportSchema>) {
+  // Validate input with Zod schema
+  // Handle form submission server-side
+  // Return success/error states
+}
+```
 
 ### Development Environment
-- Dockerized with Ubuntu focal base image and current Node.js
-- Volume mounting for live development
-- Container exposes port 3000
-- TSConfig with strict mode and Next.js plugin
+- Node.js with Next.js 15.5.2 and React 19
+- TypeScript with strict configuration
+- Biome for fast linting and formatting (replaces ESLint/Prettier)
+- PostCSS with Tailwind CSS v4 and Autoprefixer
+- Development server on port 3000
 
-## Dependencies to Install
+## Current Dependencies
 
-When adding new functionality, install these dependencies as needed:
+The project uses these key dependencies:
 
 ```bash
-# Core UI dependencies
-npm install @radix-ui/react-slot class-variance-authority clsx tailwind-merge
+# Core Framework
+next@15.5.2            # Next.js framework with App Router
+react@19.1.1           # React 19 with concurrent features
+react-dom@19.1.1       # React DOM for web
 
-# Form handling
-npm install react-hook-form @hookform/resolvers zod
+# Styling & UI
+class-variance-authority@^0.7.1  # CVA for component variants
+clsx@^2.1.1                     # Conditional class utilities
+tailwind-merge@^3.3.1           # Intelligent Tailwind class merging
+tailwindcss@^4.1.12             # Tailwind CSS v4
+framer-motion@^12.23.12         # Animation library
 
-# Animations
-npm install framer-motion
+# Typography & Fonts
+geist@^1.4.2           # Geist font family (Sans & Mono)
 
-# Additional Radix UI components (as needed)
-npm install @radix-ui/react-dialog @radix-ui/react-dropdown-menu @radix-ui/react-accordion
+# Development Tools
+@biomejs/biome@2.2.2   # Fast linter and formatter
+typescript@^5.9.2      # TypeScript compiler
+sharp@0.34.3          # Image optimization
+
+# Utilities
+date-fns@^4.1.0       # Date manipulation utilities
+server-only@^0.0.1    # Server-side only code markers
+
+# Validation (via server actions)
+zod                   # Schema validation for forms and server actions
 ```
 
 ## Key Files to Know
-- `horizon/horizon/package.json`: Dependencies and scripts
-- `horizon/horizon/tailwind.config.ts`: Custom design system configuration  
-- `horizon/horizon/components/button.tsx`: Example of CVA component pattern
-- `horizon/horizon/lib/utils.ts`: Core utility functions (cn function)
-- `docker-compose.yml`: Development environment setup
-- `Makefile`: Docker command shortcuts
+- `package.json`: Dependencies, scripts, and project configuration
+- `tailwind.config.ts`: Custom design system configuration with Tailwind v4
+- `src/components/ui/button.tsx`: Example of CVA component pattern
+- `src/lib/utils.ts`: Core utility functions (cn function for class merging)
+- `src/app/layout.tsx`: Root layout with theme providers and metadata
+- `src/lib/preferences-provider.tsx`: Theme state management and context
+- `src/lib/theme-utils.ts` & `src/lib/server-theme-utils.ts`: Theme utilities
+- `src/actions/schema.ts`: Zod validation schemas for forms
+- `src/actions/`: Server actions for form handling and API interactions
+- `src/components/theme/theme-switcher.tsx`: Theme toggle component
+- `src/styles/globals.css`: Global styles with CSS custom properties
+- `postcss.config.cjs`: PostCSS configuration for Tailwind processing
+- `tsconfig.json`: TypeScript configuration with path aliases (@/* → src/)
 
 ## Implementation Principles
 
