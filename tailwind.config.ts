@@ -9,24 +9,10 @@ export default {
 		},
 		extend: {
 			fontFamily: {
-				tobias: ["Tobias", "Times New Roman", "Georgia", "serif"],
-				inter: [
-					"Inter",
-					"-apple-system",
-					"BlinkMacSystemFont",
-					"Segoe UI",
-					"Roboto",
-					"sans-serif",
-				],
-				sans: [
-					"Inter",
-					"-apple-system",
-					"BlinkMacSystemFont",
-					"Segoe UI",
-					"Roboto",
-					"sans-serif",
-				],
-				serif: ["Tobias", "Times New Roman", "Georgia", "serif"],
+				tobias: ["var(--font-tobias)", "Times New Roman", "Georgia", "serif"],
+				sans: ["var(--font-geist-sans)", "system-ui", "sans-serif"],
+				mono: ["var(--font-geist-mono)", "monospace"],
+				serif: ["var(--font-tobias)", "Times New Roman", "Georgia", "serif"],
 			},
 			colors: {
 				background: "hsl(var(--background))",

@@ -6,6 +6,7 @@ import { PreferencesProvider } from "@/lib/preferences-provider";
 import { getServerThemePreferences } from "@/lib/server-theme-utils";
 import { GeistMono } from "geist/font/mono";
 import { GeistSans } from "geist/font/sans";
+import { tobiasFont } from "@/lib/fonts";
 import type { Metadata } from "next";
 import type { ReactElement } from "react";
 import { baseUrl } from "./sitemap";
@@ -89,7 +90,7 @@ export default async function Layout({ children }: { children: ReactElement }) {
 		>
 			<body
 				className={cn(
-					`${GeistSans.variable} ${GeistMono.variable}`,
+					`${GeistSans.variable} ${GeistMono.variable} ${tobiasFont.variable}`,
 					"bg-black text-white overflow-x-hidden font-sans antialiased",
 				)}
 			>
