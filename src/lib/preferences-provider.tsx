@@ -6,85 +6,86 @@ import { preferencesStore } from "./preferences-store";
 import { updateTheme, saveThemePreferences } from "./theme-utils";
 
 interface PreferencesContextValue {
-  preferences: ThemePreferences;
-  setThemeMode: (mode: ThemePreferences["mode"]) => void;
-  setThemePreset: (preset: ThemePreferences["preset"]) => void;
-  toggleTheme: () => void;
+	preferences: ThemePreferences;
+	setThemeMode: (mode: ThemePreferences["mode"]) => void;
+	setThemePreset: (preset: ThemePreferences["preset"]) => void;
+	toggleTheme: () => void;
 }
 
 const PreferencesContext = createContext<PreferencesContextValue | undefined>(
-  undefined
+	undefined,
 );
 
 interface PreferencesProviderProps {
-  children: React.ReactNode;
-  initialPreferences?: ThemePreferences;
+	children: React.ReactNode;
+	initialPreferences?: ThemePreferences;
 }
 
 export function PreferencesProvider({
-  children,
-  initialPreferences = DEFAULT_THEME_PREFERENCES,
+	children,
+	initialPreferences = DEFAULT_THEME_PREFERENCES,
 }: PreferencesProviderProps) {
-  const [preferences, setPreferences] = useState<ThemePreferences>(initialPreferences);
-  const [isHydrated, setIsHydrated] = useState(false);
+	const [preferences, setPreferences] =
+		useState<ThemePreferences>(initialPreferences);
+	const [isHydrated, setIsHydrated] = useState(false);
 
-  useEffect(() => {
-    // Initialize store with server preferences
-    preferencesStore.setTheme(initialPreferences);
-    setPreferences(initialPreferences);
-    
-    // Apply theme to DOM
-    updateTheme(initialPreferences);
-    
-    setIsHydrated(true);
+	useEffect(() => {
+		// Initialize store with server preferences
+		preferencesStore.setTheme(initialPreferences);
+		setPreferences(initialPreferences);
 
-    // Subscribe to store changes
-    const unsubscribe = preferencesStore.subscribe(() => {
-      const newPreferences = preferencesStore.getState();
-      setPreferences(newPreferences);
-      updateTheme(newPreferences);
-      saveThemePreferences(newPreferences);
-    });
+		// Apply theme to DOM
+		updateTheme(initialPreferences);
 
-    return unsubscribe;
-  }, [initialPreferences]);
+		setIsHydrated(true);
 
-  const setThemeMode = (mode: ThemePreferences["mode"]) => {
-    preferencesStore.setThemeMode(mode);
-  };
+		// Subscribe to store changes
+		const unsubscribe = preferencesStore.subscribe(() => {
+			const newPreferences = preferencesStore.getState();
+			setPreferences(newPreferences);
+			updateTheme(newPreferences);
+			saveThemePreferences(newPreferences);
+		});
 
-  const setThemePreset = (preset: ThemePreferences["preset"]) => {
-    preferencesStore.setThemePreset(preset);
-  };
+		return unsubscribe;
+	}, [initialPreferences]);
 
-  const toggleTheme = () => {
-    const newMode = preferences.mode === "light" ? "dark" : "light";
-    setThemeMode(newMode);
-  };
+	const setThemeMode = (mode: ThemePreferences["mode"]) => {
+		preferencesStore.setThemeMode(mode);
+	};
 
-  const value: PreferencesContextValue = {
-    preferences,
-    setThemeMode,
-    setThemePreset,
-    toggleTheme,
-  };
+	const setThemePreset = (preset: ThemePreferences["preset"]) => {
+		preferencesStore.setThemePreset(preset);
+	};
 
-  // Prevent hydration mismatch by not rendering until hydrated
-  if (!isHydrated) {
-    return <div style={{ visibility: "hidden" }}>{children}</div>;
-  }
+	const toggleTheme = () => {
+		const newMode = preferences.mode === "light" ? "dark" : "light";
+		setThemeMode(newMode);
+	};
 
-  return (
-    <PreferencesContext.Provider value={value}>
-      {children}
-    </PreferencesContext.Provider>
-  );
+	const value: PreferencesContextValue = {
+		preferences,
+		setThemeMode,
+		setThemePreset,
+		toggleTheme,
+	};
+
+	// Prevent hydration mismatch by not rendering until hydrated
+	if (!isHydrated) {
+		return <div style={{ visibility: "hidden" }}>{children}</div>;
+	}
+
+	return (
+		<PreferencesContext.Provider value={value}>
+			{children}
+		</PreferencesContext.Provider>
+	);
 }
 
 export function usePreferences() {
-  const context = useContext(PreferencesContext);
-  if (context === undefined) {
-    throw new Error("usePreferences must be used within a PreferencesProvider");
-  }
-  return context;
+	const context = useContext(PreferencesContext);
+	if (context === undefined) {
+		throw new Error("usePreferences must be used within a PreferencesProvider");
+	}
+	return context;
 }

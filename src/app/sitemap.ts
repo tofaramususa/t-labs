@@ -1,18 +1,18 @@
-import { getBlogPosts } from "@/lib/blog";
 import type { MetadataRoute } from "next";
 
-export const baseUrl = "https://midday.ai";
+export const baseUrl = "https://yourdomain.com";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const blogs = getBlogPosts().map((post) => ({
-    url: `${baseUrl}/blog/${post.slug}`,
-    lastModified: post.metadata.publishedAt,
-  }));
+	// TODO: Add blog posts when blog is implemented
+	// const blogs = getBlogPosts().map((post) => ({
+	//   url: `${baseUrl}/blog/${post.slug}`,
+	//   lastModified: post.metadata.publishedAt,
+	// }));
 
-  const routes = ["", "/updates"].map((route) => ({
-    url: `${baseUrl}${route}`,
-    lastModified: new Date().toISOString().split("T")[0],
-  }));
+	const routes = ["", "/about", "/contact"].map((route) => ({
+		url: `${baseUrl}${route}`,
+		lastModified: new Date().toISOString().split("T")[0],
+	}));
 
-  return [...routes, ...blogs];
+	return routes;
 }

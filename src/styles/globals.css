@@ -4,358 +4,370 @@
 
 /* Tobias Font Faces */
 @font-face {
-  font-family: 'Tobias';
-  src: url('/fonts/TobiasTRIAL-Regular-BF6719af6e0eca4.otf') format('opentype');
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
+	font-family: "Tobias";
+	src: url("/fonts/TobiasTRIAL-Regular-BF6719af6e0eca4.otf") format("opentype");
+	font-weight: 400;
+	font-style: normal;
+	font-display: swap;
 }
 
 @font-face {
-  font-family: 'Tobias';
-  src: url('/fonts/TobiasTRIAL-Light-BF6719af6e0a52b.otf') format('opentype');
-  font-weight: 300;
-  font-style: normal;
-  font-display: swap;
+	font-family: "Tobias";
+	src: url("/fonts/TobiasTRIAL-Light-BF6719af6e0a52b.otf") format("opentype");
+	font-weight: 300;
+	font-style: normal;
+	font-display: swap;
 }
 
 @font-face {
-  font-family: 'Tobias';
-  src: url('/fonts/TobiasTRIAL-Medium-BF6719af6e0f214.otf') format('opentype');
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
+	font-family: "Tobias";
+	src: url("/fonts/TobiasTRIAL-Medium-BF6719af6e0f214.otf") format("opentype");
+	font-weight: 500;
+	font-style: normal;
+	font-display: swap;
 }
 
 @font-face {
-  font-family: 'Tobias';
-  src: url('/fonts/TobiasTRIAL-SemiBold-BF6719af6d74d2b.otf') format('opentype');
-  font-weight: 600;
-  font-style: normal;
-  font-display: swap;
+	font-family: "Tobias";
+	src: url("/fonts/TobiasTRIAL-SemiBold-BF6719af6d74d2b.otf") format("opentype");
+	font-weight: 600;
+	font-style: normal;
+	font-display: swap;
 }
 
 @font-face {
-  font-family: 'Tobias';
-  src: url('/fonts/TobiasTRIAL-Bold-BF6719af6ded10a.otf') format('opentype');
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
+	font-family: "Tobias";
+	src: url("/fonts/TobiasTRIAL-Bold-BF6719af6ded10a.otf") format("opentype");
+	font-weight: 700;
+	font-style: normal;
+	font-display: swap;
 }
 
 @layer base {
-  :root {
-    /* Theme Colors */
-    --background: 0 0% 100%;
-    --foreground: 0 0% 7%;
-    --primary: 240 5.9% 10%;
-    --primary-foreground: 0 0% 98%;
-    --secondary: 40 11% 89%;
-    --secondary-foreground: 240 5.9% 10%;
-    --muted: 40 11% 89%;
-    --muted-foreground: 240 3.8% 45.9%;
-    --accent: 40 11% 89%;
-    --accent-foreground: 240 5.9% 10%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 45 5% 85%;
-    --input: 45 5% 85%;
-    --ring: 240 5.9% 10%;
-    --radius: 0.5rem;
-    
-    /* Syntax Highlighting */
-    --sh-class: #000000;
-    --sh-identifier: #000000;
-    --sh-sign: #8996a3;
-    --sh-string: #6a6a6a;
-    --sh-keyword: #6a6a6a;
-    --sh-comment: #a19595;
-    --sh-jsxliterals: #000000;
-    --sh-property: #6a6a6a;
-    --sh-entity: #6a6a6a;
-  }
+	:root {
+		/* Theme Colors */
+		--background: 0 0% 100%;
+		--foreground: 0 0% 7%;
+		--primary: 240 5.9% 10%;
+		--primary-foreground: 0 0% 98%;
+		--secondary: 40 11% 89%;
+		--secondary-foreground: 240 5.9% 10%;
+		--muted: 40 11% 89%;
+		--muted-foreground: 240 3.8% 45.9%;
+		--accent: 40 11% 89%;
+		--accent-foreground: 240 5.9% 10%;
+		--destructive: 0 84.2% 60.2%;
+		--destructive-foreground: 0 0% 98%;
+		--border: 45 5% 85%;
+		--input: 45 5% 85%;
+		--ring: 240 5.9% 10%;
+		--radius: 0.5rem;
 
-  .dark {
-    --background: 0 0% 7%;
-    --foreground: 0 0% 98%;
-    --primary: 0 0% 98%;
-    --primary-foreground: 0 0% 7%;
-    --secondary: 0 0% 15%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 0 0% 15%;
-    --muted-foreground: 240 5% 64.9%;
-    --accent: 0 0% 15%;
-    --accent-foreground: 0 0% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 20%;
-    --input: 0 0% 20%;
-    --ring: 0 0% 83.1%;
-    
-    /* Syntax Highlighting */
-    --sh-class: #ffffff;
-    --sh-identifier: #ffffff;
-    --sh-sign: #8996a3;
-    --sh-string: #a7a7a7;
-    --sh-keyword: #a7a7a7;
-    --sh-comment: #a19595;
-    --sh-jsxliterals: #ffffff;
-    --sh-property: #a7a7a7;
-    --sh-entity: #a7a7a7;
-  }
-  
-  /* Theme Presets */
-  [data-theme-preset="brutalist"] {
-    --radius: 0rem;
-    --border: 0 0% 0%;
-  }
-  
-  [data-theme-preset="soft-pop"] {
-    --primary: 340 75% 55%;
-    --accent: 50 95% 70%;
-    --radius: 1rem;
-  }
-  
-  [data-theme-preset="tangerine"] {
-    --primary: 25 95% 53%;
-    --accent: 45 93% 47%;
-    --secondary: 25 20% 90%;
-  }
+		/* Syntax Highlighting */
+		--sh-class: #000000;
+		--sh-identifier: #000000;
+		--sh-sign: #8996a3;
+		--sh-string: #6a6a6a;
+		--sh-keyword: #6a6a6a;
+		--sh-comment: #a19595;
+		--sh-jsxliterals: #000000;
+		--sh-property: #6a6a6a;
+		--sh-entity: #6a6a6a;
+	}
 
-  * {
-    @apply border-border;
-  }
+	.dark {
+		--background: 0 0% 7%;
+		--foreground: 0 0% 98%;
+		--primary: 0 0% 98%;
+		--primary-foreground: 0 0% 7%;
+		--secondary: 0 0% 15%;
+		--secondary-foreground: 0 0% 98%;
+		--muted: 0 0% 15%;
+		--muted-foreground: 240 5% 64.9%;
+		--accent: 0 0% 15%;
+		--accent-foreground: 0 0% 98%;
+		--destructive: 0 62.8% 30.6%;
+		--destructive-foreground: 0 0% 98%;
+		--border: 0 0% 20%;
+		--input: 0 0% 20%;
+		--ring: 0 0% 83.1%;
 
-  body {
-    @apply bg-background text-foreground;
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
-    font-size: 1rem;
-    line-height: 1.5;
-  }
+		/* Syntax Highlighting */
+		--sh-class: #ffffff;
+		--sh-identifier: #ffffff;
+		--sh-sign: #8996a3;
+		--sh-string: #a7a7a7;
+		--sh-keyword: #a7a7a7;
+		--sh-comment: #a19595;
+		--sh-jsxliterals: #ffffff;
+		--sh-property: #a7a7a7;
+		--sh-entity: #a7a7a7;
+	}
+
+	/* Theme Presets */
+	[data-theme-preset="brutalist"] {
+		--radius: 0rem;
+		--border: 0 0% 0%;
+	}
+
+	[data-theme-preset="soft-pop"] {
+		--primary: 340 75% 55%;
+		--accent: 50 95% 70%;
+		--radius: 1rem;
+	}
+
+	[data-theme-preset="tangerine"] {
+		--primary: 25 95% 53%;
+		--accent: 45 93% 47%;
+		--secondary: 25 20% 90%;
+	}
+
+	* {
+		@apply border-border;
+	}
+
+	body {
+		@apply bg-background text-foreground;
+		font-family:
+			"Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+			sans-serif;
+		font-size: 1rem;
+		line-height: 1.5;
+	}
 }
 
 /* Custom Typography Classes */
 .font-tobias {
-  font-family: 'Tobias', 'Times New Roman', 'Georgia', serif;
+	font-family: "Tobias", "Times New Roman", "Georgia", serif;
 }
 
 .font-inter {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+	font-family:
+		"Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", sans-serif;
 }
 
 /* Text Shadow Effects */
 .text-shadow-ascii-contrast {
-  text-shadow: 
-    var(--color-background, #000) 3px 0 0,
-    var(--color-background, #000) 2px 0 0,
-    var(--color-background, #000) 1px 0 0;
+	text-shadow:
+		var(--color-background, #000) 3px 0 0,
+		var(--color-background, #000) 2px 0 0,
+		var(--color-background, #000) 1px 0 0;
 }
 
 .text-shadow-ascii-soft {
-  text-shadow: 
-    rgba(0,0,0,0.5) 1px 1px 2px;
+	text-shadow: rgba(0, 0, 0, 0.5) 1px 1px 2px;
 }
 
 /* Responsive Hero Text */
 @media (min-width: 48rem) {
-  .md\:text-\[6\.25rem\] {
-    font-size: 6.25rem;
-    line-height: 1.1;
-  }
+	.md\:text-\[6\.25rem\] {
+		font-size: 6.25rem;
+		line-height: 1.1;
+	}
 }
 
 @media (min-width: 64rem) {
-  .lg\:text-\[7rem\] {
-    font-size: 7rem;
-    line-height: 1.1;
-  }
+	.lg\:text-\[7rem\] {
+		font-size: 7rem;
+		line-height: 1.1;
+	}
 }
 
 @media (min-width: 80rem) {
-  .xl\:text-\[8rem\] {
-    font-size: 8rem;
-    line-height: 1.1;
-  }
+	.xl\:text-\[8rem\] {
+		font-size: 8rem;
+		line-height: 1.1;
+	}
 }
 
 /* Hero Typography */
 .hero-headline {
-  font-family: 'Tobias', 'Times New Roman', 'Georgia', serif;
-  font-weight: 300;
-  font-size: clamp(3.5rem, 8vw, 8rem);
-  line-height: 1.1;
-  letter-spacing: -0.02em;
+	font-family: "Tobias", "Times New Roman", "Georgia", serif;
+	font-weight: 300;
+	font-size: clamp(3.5rem, 8vw, 8rem);
+	line-height: 1.1;
+	letter-spacing: -0.02em;
 }
 
 .hero-subheadline {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-  font-size: clamp(1rem, 2vw, 1.125rem);
-  line-height: 1.6;
-  font-weight: 400;
+	font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+	font-size: clamp(1rem, 2vw, 1.125rem);
+	line-height: 1.6;
+	font-weight: 400;
 }
 
 /* Dotted Pattern */
 .dotted-pattern {
-  background-image: radial-gradient(circle at 2px 2px, currentColor 1px, transparent 1px);
-  background-size: 8px 8px;
-  opacity: 0.15;
+	background-image: radial-gradient(
+		circle at 2px 2px,
+		currentColor 1px,
+		transparent 1px
+	);
+	background-size: 8px 8px;
+	opacity: 0.15;
 }
 
 .updates p {
-  min-height: 1.87em;
-  margin-top: 1px;
-  margin-bottom: 1px;
-  padding: 3px 2px;
+	min-height: 1.87em;
+	margin-top: 1px;
+	margin-bottom: 1px;
+	padding: 3px 2px;
 }
 
 .updates h2 {
-  font-size: 26px;
-  margin-top: .8em;
-  margin-bottom: 10px;
-  font-weight: 500;
+	font-size: 26px;
+	margin-top: 0.8em;
+	margin-bottom: 10px;
+	font-weight: 500;
 }
 
 .updates h4 {
-  display: block;
-  font-weight: 600;
-  color: var(--text-primary);
-  margin-top: 15px;
+	display: block;
+	font-weight: 600;
+	color: var(--text-primary);
+	margin-top: 15px;
 }
 
 .updates h3 {
-  font-size: 1.25em;
-  margin-top: .8em;
-  margin-bottom: 1px;
-  font-weight: 500;
+	font-size: 1.25em;
+	margin-top: 0.8em;
+	margin-bottom: 1px;
+	font-weight: 500;
 }
 
 .updates p,
 .updates li {
-  color: #707070;
+	color: #707070;
 }
 
 .updates ul li {
-  margin-top: 1px;
-  margin-bottom: 1px;
-  padding-left: 12px;
-  padding-top: 3px;
-  padding-bottom: 2px;
+	margin-top: 1px;
+	margin-bottom: 1px;
+	padding-left: 12px;
+	padding-top: 3px;
+	padding-bottom: 2px;
 }
 
 .updates ul {
-  list-style-type: disc;
-  list-style-position: inside;
+	list-style-type: disc;
+	list-style-position: inside;
 }
 
 .updates p code span {
-  font-family: var(--font-geist-mono);
-  color: #eb5757 !important;
-  font-size: 85%;
-  font-weight: 600;
+	font-family: var(--font-geist-mono);
+	color: #eb5757 !important;
+	font-size: 85%;
+	font-weight: 600;
 }
 
 .updates p code {
-  border-radius: 4px;
-  background: hsla(44, 6%, 50%, 0.15);
-  padding: 0 .4em 3px .4em;
-  line-height: normal;
+	border-radius: 4px;
+	background: hsla(44, 6%, 50%, 0.15);
+	padding: 0 0.4em 3px 0.4em;
+	line-height: normal;
 }
 
 .updates a {
-  text-decoration: underline;
+	text-decoration: underline;
 }
 
 .updates blockquote p {
-  margin: 7px 2px;
-  padding-left: 14px;
-  padding-right: 14px;
-  border-left: 3px solid;
-  color: hsl(var(--foreground));
+	margin: 7px 2px;
+	padding-left: 14px;
+	padding-right: 14px;
+	border-left: 3px solid;
+	color: hsl(var(--foreground));
 }
 
 .updates b,
 .updates strong {
-  font-weight: 500;
+	font-weight: 500;
 }
 
 pre::-webkit-scrollbar {
-  display: none;
+	display: none;
 }
 
 pre {
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
-  padding: 20px;
-  border: 1px solid;
-  border-color: hsl(var(--border));
-  border-radius: 10px;
-  margin: 20px 0 !important;
-  background-color: #0c0c0c;
-  overflow: auto;
+	-ms-overflow-style: none; /* IE and Edge */
+	scrollbar-width: none; /* Firefox */
+	padding: 20px;
+	border: 1px solid;
+	border-color: hsl(var(--border));
+	border-radius: 10px;
+	margin: 20px 0 !important;
+	background-color: #0c0c0c;
+	overflow: auto;
 }
 
 pre code {
-  font-size: 13px;
-  font-weight: 500 !important;
+	font-size: 13px;
+	font-weight: 500 !important;
 }
 
 .dark .dotted-bg {
-  background-image: radial-gradient(
-    circle at 1px 1px,
-    #232323 1px,
-    transparent 0
-  );
-  background-size: 8px 8px;
+	background-image: radial-gradient(
+		circle at 1px 1px,
+		#232323 1px,
+		transparent 0
+	);
+	background-size: 8px 8px;
 }
 
 .light .dotted-bg {
-  background-image: radial-gradient(
-    circle at 1px 1px,
-    #e7e7e7 1px,
-    transparent 0
-  );
-  background-size: 8px 8px;
+	background-image: radial-gradient(
+		circle at 1px 1px,
+		#e7e7e7 1px,
+		transparent 0
+	);
+	background-size: 8px 8px;
 }
 
 .text-stroke {
-  color: white;
-  text-shadow: -1px 1px 0 black, 1px 1px 0 black, 1px -1px 0 black, -1px -1px 0
-    black;
+	color: white;
+	text-shadow:
+		-1px 1px 0 black,
+		1px 1px 0 black,
+		1px -1px 0 black,
+		-1px -1px 0 black;
 }
 
 .dark .text-stroke {
-  color: black;
-  text-shadow: -1px 1px 0 white, 1px 1px 0 white, 1px -1px 0 white, -1px -1px 0
-    white;
+	color: black;
+	text-shadow:
+		-1px 1px 0 white,
+		1px 1px 0 white,
+		1px -1px 0 white,
+		-1px -1px 0 white;
 }
 
 .dark .text-dotted {
-  background-image: radial-gradient(
-    circle at 0.4px 0.2px,
-    #fff 1px,
-    transparent 0
-  );
-  background-size: 5px 5px;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+	background-image: radial-gradient(
+		circle at 0.4px 0.2px,
+		#fff 1px,
+		transparent 0
+	);
+	background-size: 5px 5px;
+	background-clip: text;
+	-webkit-text-fill-color: transparent;
 }
 
 .text-dotted {
-  background-image: radial-gradient(
-    circle at 0.4px 0.2px,
-    #000 1px,
-    transparent 0
-  );
-  background-size: 5px 5px;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+	background-image: radial-gradient(
+		circle at 0.4px 0.2px,
+		#000 1px,
+		transparent 0
+	);
+	background-size: 5px 5px;
+	background-clip: text;
+	-webkit-text-fill-color: transparent;
 }
 
 ::selection {
-  background: #00cc9937;
-  color: #007763fd;
+	background: #00cc9937;
+	color: #007763fd;
 }
 
 img::selection {
-  background: transparent;
+	background: transparent;
 }
